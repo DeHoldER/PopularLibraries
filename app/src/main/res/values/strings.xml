@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PopularLibraries</string>
+    <string name="buttonDescription">this is the button</string>
+    <string name="number_1">button one</string>
+    <string name="number_2">button two</string>
+    <string name="number_3">button three</string>
 </resources>
