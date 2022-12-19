@@ -15,10 +15,16 @@ class UserListPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        repository.getUsers().subscribe {
-            viewState.initList(it)
-            viewState.hideLoading()
-        }
+//        repository.getUsers().subscribe {
+//            viewState.initList(it)
+//            viewState.hideLoading()
+//        }
+        repository.getUsers().subscribe(
+            {
+                viewState.initList(it)
+                viewState.hideLoading()
+            },
+            { })
     }
 
     fun onBackPressed(): Boolean {
