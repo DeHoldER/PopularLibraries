@@ -1,15 +1,15 @@
-package com.geekbrains.popularlibraries.user.details
+package com.geekbrains.popularlibraries.view.converter
 
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class UserDetailsPresenter(
+class ConverterPresenter(
     private val router: Router
-) : MvpPresenter<UserDetailsView>() {
+) : MvpPresenter<ConverterView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.initUser()
+        viewState.initView()
     }
 
     fun onBackPressed(): Boolean {

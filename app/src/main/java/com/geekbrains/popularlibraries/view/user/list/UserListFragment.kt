@@ -1,4 +1,4 @@
-package com.geekbrains.popularlibraries.user.list
+package com.geekbrains.popularlibraries.view.user.list
 
 import android.os.Bundle
 import android.view.View

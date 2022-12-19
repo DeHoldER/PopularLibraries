@@ -1,4 +1,4 @@
-package com.geekbrains.popularlibraries.user.list
+package com.geekbrains.popularlibraries.view.user.list
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

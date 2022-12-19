@@ -1,4 +1,4 @@
-package com.geekbrains.popularlibraries.user.list
+package com.geekbrains.popularlibraries.view.user.list
 
 import com.geekbrains.popularlibraries.model.GithubUser
 import moxy.MvpView

@@ -1,4 +1,4 @@
-package com.geekbrains.popularlibraries.user.details
+package com.geekbrains.popularlibraries.view.user.details
 
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleStrategy

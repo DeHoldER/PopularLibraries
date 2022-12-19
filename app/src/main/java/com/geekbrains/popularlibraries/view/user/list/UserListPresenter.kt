@@ -1,10 +1,10 @@
-package com.geekbrains.popularlibraries.user.list
+package com.geekbrains.popularlibraries.view.user.list
 
 import android.os.Bundle
 import com.geekbrains.popularlibraries.core.nav.AppScreens
 import com.geekbrains.popularlibraries.model.GithubUser
 import com.geekbrains.popularlibraries.repository.GithubRepository
-import com.geekbrains.popularlibraries.user.details.UserDetailsFragment
+import com.geekbrains.popularlibraries.view.user.details.UserDetailsFragment
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 

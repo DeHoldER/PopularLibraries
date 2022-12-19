@@ -1,8 +1,7 @@
-package com.geekbrains.popularlibraries.user.details
+package com.geekbrains.popularlibraries.view.user.details
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
 import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import com.geekbrains.popularlibraries.core.OnBackPressedListener
 import com.geekbrains.popularlibraries.databinding.FragmentUserDetailsBinding
