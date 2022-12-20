@@ -6,6 +6,5 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
 interface ConverterView : MvpView {
-    fun initView()
-    fun onPickImageClicked()
+    fun pickImage()
 }
