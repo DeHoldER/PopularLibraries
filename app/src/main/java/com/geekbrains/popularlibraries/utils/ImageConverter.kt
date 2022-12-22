@@ -8,12 +8,6 @@ import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import io.reactivex.rxjava3.core.Single
 import java.io.FileOutputStream
 
-const val REQUEST_CODE_GET_CONTENT = 123
-const val REQUEST_CODE_PERMISSION_WRITE_EXTERNAL_STORAGE = 124
-const val KEY_PATH_IMAGE_PICKED = "pathImagePicked"
-const val KEY_PATH_IMAGE_CONVERTED = "pathImageConverted"
-const val KEY_IS_CONVERTING = "isConverting"
-
 object ImageConverter {
 
     fun convertJpgToPng(bitmap: Bitmap, pathToBitmap: String): Single<Pair<String, Bitmap>> {
@@ -45,7 +39,7 @@ object ImageConverter {
         var res: String? = null
         val projection = arrayOf(MediaStore.Images.Media.DATA)
         val cursor =
-            GeekBrainsApp.instance.contentResolver.query(contentUri, projection, null, null, null);
+            GeekBrainsApp.instance.contentResolver.query(contentUri, projection, null, null, null)
         if (cursor != null) {
             cursor.moveToFirst()
             val columnIndex = cursor.getColumnIndex(projection[0])

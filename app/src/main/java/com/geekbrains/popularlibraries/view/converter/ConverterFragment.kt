@@ -2,8 +2,11 @@ package com.geekbrains.popularlibraries.view.converter
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import com.geekbrains.popularlibraries.core.OnBackPressedListener
@@ -37,6 +40,14 @@ class ConverterFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.imagePicked.setOnClickListener { presenter.onPickImageClicked() }
+        binding.btnConvert.setOnClickListener {
+            if (pathImagePicked != null) {
+                presenter.onBtnConvertClicked(
+                    (binding.imagePicked.drawable as BitmapDrawable).bitmap,
+                    pathImagePicked
+                )
+            }
+        }
     }
 
     override fun onBackPressed(): Boolean = presenter.onBackPressed()
@@ -55,6 +66,16 @@ class ConverterFragment :
                 textPathImagePicked.text = pathImagePicked
             }
         }
+    }
+
+    override fun initConvertedImage(result: Pair<String, Bitmap>) {
+        with(binding) {
+            textPathImageConverted.text = result.first
+            imageConverted.setImageBitmap(result.second)
+            imageConverted.background = null
+        }
+        Toast.makeText(requireContext(), "${result.first} converted to png.", Toast.LENGTH_SHORT)
+            .show()
     }
 
 }

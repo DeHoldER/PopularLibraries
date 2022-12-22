@@ -1,6 +1,8 @@
 package com.geekbrains.popularlibraries.main
 
+import android.Manifest
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
 import com.geekbrains.popularlibraries.R
 import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import com.geekbrains.popularlibraries.core.OnBackPressedListener
@@ -20,6 +22,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        requestPermissionWrite()
     }
 
     override fun onResumeFragments() {
@@ -39,6 +42,14 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             }
         }
         presenter.onBackPressed()
+    }
+
+    private fun requestPermissionWrite() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            124
+        )
     }
 
 }
