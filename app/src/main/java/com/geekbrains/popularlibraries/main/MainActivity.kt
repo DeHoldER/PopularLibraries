@@ -22,7 +22,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        requestPermissionWrite()
+//        requestPermissionWrite()
     }
 
     override fun onResumeFragments() {
