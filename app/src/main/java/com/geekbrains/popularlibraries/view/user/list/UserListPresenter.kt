@@ -4,6 +4,8 @@ import android.os.Bundle
 import com.geekbrains.popularlibraries.core.nav.AppScreens
 import com.geekbrains.popularlibraries.model.GithubUser
 import com.geekbrains.popularlibraries.repository.GithubRepository
+import com.geekbrains.popularlibraries.utils.disposeBy
+import com.geekbrains.popularlibraries.utils.subscribeByDefault
 import com.geekbrains.popularlibraries.view.user.details.UserDetailsFragment
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
@@ -19,12 +21,15 @@ class UserListPresenter(
 //            viewState.initList(it)
 //            viewState.hideLoading()
 //        }
-        repository.getUsers().subscribe(
-            {
-                viewState.initList(it)
-                viewState.hideLoading()
-            },
-            { })
+        repository.getUsers()
+            .subscribeByDefault()
+            .subscribe(
+                {
+                    viewState.initList(it)
+                    viewState.hideLoading()
+                },
+                { }
+            )
     }
 
     fun onBackPressed(): Boolean {

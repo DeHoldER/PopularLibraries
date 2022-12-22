@@ -27,7 +27,13 @@ class UserDetailsFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments.let { it?.getParcelable<GithubUser>(BUNDLE_EXTRA) ?: GithubUser(login = "error") }
+        arguments.let {
+            it?.getParcelable<GithubUser>(BUNDLE_EXTRA) ?: GithubUser(
+                id = 0,
+                login = "error",
+                ""
+            )
+        }
             .also { userBundle = it }
     }
 

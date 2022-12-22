@@ -7,6 +7,7 @@ import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import com.geekbrains.popularlibraries.core.OnBackPressedListener
 import com.geekbrains.popularlibraries.databinding.FragmentUserListBinding
 import com.geekbrains.popularlibraries.model.GithubUser
+import com.geekbrains.popularlibraries.network.NetworkProvider
 import com.geekbrains.popularlibraries.repository.impl.GithubRepositoryImpl
 import com.geekbrains.popularlibraries.utils.ViewBindingFragment
 import moxy.ktx.moxyPresenter
@@ -27,7 +28,10 @@ class UserListFragment :
         }
     })
     private val presenter: UserListPresenter by moxyPresenter {
-        UserListPresenter(GithubRepositoryImpl(), GeekBrainsApp.instance.router)
+        UserListPresenter(
+            GithubRepositoryImpl(NetworkProvider.usersApi),
+            GeekBrainsApp.instance.router
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

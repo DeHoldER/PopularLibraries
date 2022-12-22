@@ -1,22 +1,12 @@
 package com.geekbrains.popularlibraries.model
 
 import android.os.Parcelable
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import java.net.IDN
 
 @Parcelize
 data class GithubUser(
-    @Expose
-    @SerializedName("id")
-    val id: Long = 0,
-
-    @Expose
-    @SerializedName("login")
-    val login: String = "",
-
-    @Expose
-    @SerializedName("avatar_url")
-    val avatarUrl: String = ""
+    val id: Long,
+    val login: String,
+    val avatarUrl: String?
 ) : Parcelable
