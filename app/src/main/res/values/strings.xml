@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PopularLibraries</string>
+    <string name="buttonDescription">this is the button</string>
+    <string name="number_1">button one</string>
+    <string name="number_2">button two</string>
+    <string name="number_3">button three</string>
+    <string name="txt_photo_path">Converted photo path</string>
+    <string name="txt_pick_photo">Pick photo to convert</string>
+    <string name="btn_convert_to_png">Convert to png</string>
+    <string name="converted_image">converted image</string>
+    <string name="image_to_convert">image to convert</string>
 </resources>
