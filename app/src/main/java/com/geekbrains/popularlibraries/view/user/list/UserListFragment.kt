@@ -10,6 +10,7 @@ import com.geekbrains.popularlibraries.model.GithubUser
 import com.geekbrains.popularlibraries.network.NetworkProvider
 import com.geekbrains.popularlibraries.repository.impl.GithubRepositoryImpl
 import com.geekbrains.popularlibraries.utils.ViewBindingFragment
+import com.geekbrains.popularlibraries.utils.toggleVisibility
 import moxy.ktx.moxyPresenter
 
 class UserListFragment :
@@ -54,12 +55,8 @@ class UserListFragment :
         presenter.onUserClicked(user)
     }
 
-    override fun showLoading() {
-        binding.progressLayout.visibility = View.VISIBLE
-    }
-
-    override fun hideLoading() {
-        binding.progressLayout.visibility = View.GONE
+    override fun toggleLoading(isVisible: Boolean) {
+        binding.progressLayout.toggleVisibility(isVisible)
     }
 
     override fun onBackPressed() = presenter.onBackPressed()

@@ -6,39 +6,44 @@ import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import com.geekbrains.popularlibraries.core.OnBackPressedListener
 import com.geekbrains.popularlibraries.databinding.FragmentUserDetailsBinding
 import com.geekbrains.popularlibraries.model.GithubUser
+import com.geekbrains.popularlibraries.network.NetworkProvider
+import com.geekbrains.popularlibraries.repository.impl.GithubRepositoryImpl
 import com.geekbrains.popularlibraries.utils.ViewBindingFragment
+import com.geekbrains.popularlibraries.utils.loadImage
+import com.geekbrains.popularlibraries.utils.toggleVisibility
 import moxy.ktx.moxyPresenter
 
 class UserDetailsFragment :
     ViewBindingFragment<FragmentUserDetailsBinding>(FragmentUserDetailsBinding::inflate),
     UserDetailsView, OnBackPressedListener {
 
-    private lateinit var userBundle: GithubUser
-
     companion object {
-        const val BUNDLE_EXTRA = "BUNDLE_EXTRA"
-        fun newInstance(bundle: Bundle): UserDetailsFragment =
-            UserDetailsFragment().apply { arguments = bundle }
+        const val ARG_LOGIN = "ARG_LOGIN"
+        fun newInstance(login: String): UserDetailsFragment =
+            UserDetailsFragment().apply {
+                arguments = Bundle().apply { putString(ARG_LOGIN, login) }
+            }
     }
 
     private val presenter: UserDetailsPresenter by moxyPresenter {
-        UserDetailsPresenter(GeekBrainsApp.instance.router)
+        UserDetailsPresenter(
+            GithubRepositoryImpl(NetworkProvider.usersApi),
+            GeekBrainsApp.instance.router
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments.let {
-            it?.getParcelable<GithubUser>(BUNDLE_EXTRA) ?: GithubUser(
-                id = 0,
-                login = "error",
-                ""
-            )
-        }
-            .also { userBundle = it }
+        arguments?.getString(ARG_LOGIN)?.let { presenter.loadUser(it) }
     }
 
-    override fun initUser() = with(binding) {
-        txtUserDetailsName.text = userBundle.login
+    override fun initUser(user: GithubUser) = with(binding) {
+        txtUserDetailsName.text = user.login
+        ivUserAvatar.loadImage(user.avatarUrl)
+    }
+
+    override fun toggleLoading(isVisible: Boolean) {
+        binding.progressLayout.toggleVisibility(isVisible)
     }
 
     override fun onBackPressed() = presenter.onBackPressed()

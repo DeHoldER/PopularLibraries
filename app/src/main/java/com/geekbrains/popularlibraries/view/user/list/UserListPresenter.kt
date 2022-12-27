@@ -1,12 +1,9 @@
 package com.geekbrains.popularlibraries.view.user.list
 
-import android.os.Bundle
 import com.geekbrains.popularlibraries.core.nav.AppScreens
 import com.geekbrains.popularlibraries.model.GithubUser
 import com.geekbrains.popularlibraries.repository.GithubRepository
-import com.geekbrains.popularlibraries.utils.disposeBy
 import com.geekbrains.popularlibraries.utils.subscribeByDefault
-import com.geekbrains.popularlibraries.view.user.details.UserDetailsFragment
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
@@ -17,16 +14,13 @@ class UserListPresenter(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-//        repository.getUsers().subscribe {
-//            viewState.initList(it)
-//            viewState.hideLoading()
-//        }
+        viewState.toggleLoading(true)
         repository.getUsers()
             .subscribeByDefault()
             .subscribe(
                 {
                     viewState.initList(it)
-                    viewState.hideLoading()
+                    viewState.toggleLoading(false)
                 },
                 { }
             )
@@ -39,13 +33,7 @@ class UserListPresenter(
 
     fun onUserClicked(user: GithubUser) {
         router.navigateTo(
-            AppScreens.userDetailsScreen(
-                Bundle().apply {
-                    putParcelable(
-                        UserDetailsFragment.BUNDLE_EXTRA,
-                        user
-                    )
-                })
+            AppScreens.userDetailsScreen(user.login)
         )
     }
 }

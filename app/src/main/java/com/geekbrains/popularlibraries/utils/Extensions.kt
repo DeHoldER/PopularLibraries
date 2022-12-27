@@ -1,5 +1,6 @@
 package com.geekbrains.popularlibraries.utils
 
+import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.geekbrains.popularlibraries.R
@@ -25,4 +26,9 @@ fun <T> Single<T>.subscribeByDefault(): Single<T> {
 
 fun Disposable.disposeBy(bag: CompositeDisposable) {
     bag.add(this)
+}
+
+fun View.toggleVisibility(isVisible: Boolean) {
+    if (isVisible) this.visibility = View.VISIBLE
+    else this.visibility = View.GONE
 }

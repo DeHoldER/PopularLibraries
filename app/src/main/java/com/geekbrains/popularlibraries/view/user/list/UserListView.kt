@@ -9,6 +9,5 @@ import moxy.viewstate.strategy.StateStrategyType
 interface UserListView : MvpView {
     fun initList(list: List<GithubUser>)
     fun onUserClicked(user: GithubUser)
-    fun showLoading()
-    fun hideLoading()
+    fun toggleLoading(isVisible: Boolean)
 }
