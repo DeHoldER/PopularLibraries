@@ -11,6 +11,8 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 
+const val WRITE_PERMISSION_REQUEST_CODE = 124
+
 class MainActivity : MvpAppCompatActivity(), MainView {
 
     private val navigator = AppNavigator(this, R.id.containerMain)
@@ -22,7 +24,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        requestPermissionWrite()
     }
 
     override fun onResumeFragments() {
@@ -48,7 +49,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            124
+            WRITE_PERMISSION_REQUEST_CODE
         )
     }
 
