@@ -1,4 +1,4 @@
-package com.geekbrains.popularlibraries.view.user.details
+package com.geekbrains.popularlibraries.view.user.repo.details
 
 import com.geekbrains.popularlibraries.model.GithubFork
 import com.geekbrains.popularlibraries.model.GithubRepo
@@ -8,9 +8,9 @@ import moxy.viewstate.strategy.AddToEndSingleStrategy
 import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(AddToEndSingleStrategy::class)
-interface UserDetailsView : MvpView {
-    fun initUser(user: GithubUser)
-    fun initRepoList(list: List<GithubRepo>)
-    fun toggleUserLoading(isVisible: Boolean)
-    fun toggleReposLoading(isVisible: Boolean)
+interface RepoDetailsView : MvpView {
+    fun initRepo(repo: GithubRepo)
+    fun initForkList(list: List<GithubFork>)
+    fun toggleRepoLoading(isVisible: Boolean)
+    fun toggleForksLoading(isVisible: Boolean)
 }

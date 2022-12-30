@@ -1,7 +1,7 @@
 package com.geekbrains.popularlibraries.core.mapper
 
 import com.geekbrains.popularlibraries.model.GithubUser
-import com.geekbrains.popularlibraries.network.UserDto
+import com.geekbrains.popularlibraries.network.dto.UserDto
 
 object UserMapper {
 

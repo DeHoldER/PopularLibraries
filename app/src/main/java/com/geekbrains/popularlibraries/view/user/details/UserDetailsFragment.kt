@@ -13,8 +13,6 @@ import com.geekbrains.popularlibraries.repository.impl.GithubRepositoryImpl
 import com.geekbrains.popularlibraries.utils.ViewBindingFragment
 import com.geekbrains.popularlibraries.utils.loadImage
 import com.geekbrains.popularlibraries.utils.toggleVisibility
-import com.geekbrains.popularlibraries.view.user.list.UserListAdapter
-import com.geekbrains.popularlibraries.view.user.list.UserListFragment
 import moxy.ktx.moxyPresenter
 
 class UserDetailsFragment :

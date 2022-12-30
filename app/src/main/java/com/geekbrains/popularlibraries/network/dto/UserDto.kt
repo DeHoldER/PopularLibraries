@@ -1,4 +1,4 @@
-package com.geekbrains.popularlibraries.network
+package com.geekbrains.popularlibraries.network.dto
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

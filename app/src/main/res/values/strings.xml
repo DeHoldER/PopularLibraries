@@ -9,4 +9,6 @@
     <string name="btn_convert_to_png">Convert to png</string>
     <string name="converted_image">converted image</string>
     <string name="image_to_convert">image to convert</string>
+    <string name="str_repositories">Repositories:</string>
+    <string name="str_forks">Forks:</string>
 </resources>

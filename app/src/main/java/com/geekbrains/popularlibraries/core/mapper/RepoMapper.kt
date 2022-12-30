@@ -1,7 +1,7 @@
 package com.geekbrains.popularlibraries.core.mapper
 
 import com.geekbrains.popularlibraries.model.GithubRepo
-import com.geekbrains.popularlibraries.network.RepoDto
+import com.geekbrains.popularlibraries.network.dto.RepoDto
 
 object RepoMapper {
 
@@ -10,6 +10,7 @@ object RepoMapper {
             id = dto.id,
             name = dto.name,
             forksUrl = dto.forksUrl,
+            ownerLogin = dto.owner.login
         )
     }
 
