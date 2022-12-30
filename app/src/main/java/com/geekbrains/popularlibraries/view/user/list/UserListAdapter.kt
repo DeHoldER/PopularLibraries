@@ -15,8 +15,7 @@ import com.geekbrains.popularlibraries.utils.loadImage
 
 class UserListAdapter(
     private var onItemViewClickListener: UserListFragment.OnItemViewClickListener?
-) :
-    RecyclerView.Adapter<UserListAdapter.GithubUserViewHolder>() {
+) : RecyclerView.Adapter<UserListAdapter.GithubUserViewHolder>() {
 
     var users: List<GithubUser> = emptyList()
         @SuppressLint("NotifyDataSetChanged")

@@ -1,5 +1,6 @@
 package com.geekbrains.popularlibraries.view.user.details
 
+import com.geekbrains.popularlibraries.model.GithubRepo
 import com.geekbrains.popularlibraries.repository.GithubRepository
 import com.geekbrains.popularlibraries.utils.disposeBy
 import com.geekbrains.popularlibraries.utils.subscribeByDefault
@@ -20,13 +21,22 @@ class UserDetailsPresenter(
     }
 
     fun loadUser(login: String) {
-        viewState.toggleLoading(true)
+        viewState.toggleUserLoading(true)
         repository.getUserByLogin(login)
             .subscribeByDefault()
             .subscribe(
                 {
                     viewState.initUser(it)
-                    viewState.toggleLoading(false)
+                    viewState.toggleUserLoading(false)
+                },
+                {}
+            ).disposeBy(bag)
+        repository.getReposByLogin(login)
+            .subscribeByDefault()
+            .subscribe(
+                {
+                    viewState.initRepoList(it)
+                    viewState.toggleReposLoading(false)
                 },
                 {}
             ).disposeBy(bag)
@@ -35,5 +45,9 @@ class UserDetailsPresenter(
     override fun onDestroy() {
         super.onDestroy()
         bag.dispose()
+    }
+
+    fun onRepoClicked(repo: GithubRepo) {
+
     }
 }

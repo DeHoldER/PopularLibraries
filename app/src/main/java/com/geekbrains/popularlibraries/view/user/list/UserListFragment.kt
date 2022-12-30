@@ -28,6 +28,7 @@ class UserListFragment :
             onUserClicked(user)
         }
     })
+
     private val presenter: UserListPresenter by moxyPresenter {
         UserListPresenter(
             GithubRepositoryImpl(NetworkProvider.usersApi),
