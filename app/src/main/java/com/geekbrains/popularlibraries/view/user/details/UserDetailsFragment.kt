@@ -35,7 +35,11 @@ class UserDetailsFragment :
 
     private val presenter: UserDetailsPresenter by moxyPresenter {
         UserDetailsPresenter(
-            GithubRepositoryImpl(NetworkProvider.usersApi),
+            GithubRepositoryImpl(
+                NetworkProvider.usersApi,
+                GeekBrainsApp.instance.database.userDao(),
+                GeekBrainsApp.instance.getConnectSingle()
+            ),
             GeekBrainsApp.instance.router
         )
     }

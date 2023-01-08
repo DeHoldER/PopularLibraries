@@ -38,7 +38,11 @@ class RepoDetailsFragment :
 
     private val presenter: RepoDetailsPresenter by moxyPresenter {
         RepoDetailsPresenter(
-            GithubRepositoryImpl(NetworkProvider.usersApi),
+            GithubRepositoryImpl(
+                NetworkProvider.usersApi,
+                GeekBrainsApp.instance.database.userDao(),
+                GeekBrainsApp.instance.getConnectSingle()
+            ),
             GeekBrainsApp.instance.router
         )
     }

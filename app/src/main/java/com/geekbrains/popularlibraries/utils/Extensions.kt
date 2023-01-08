@@ -5,6 +5,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.geekbrains.popularlibraries.R
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -31,4 +32,17 @@ fun Disposable.disposeBy(bag: CompositeDisposable) {
 fun View.toggleVisibility(isVisible: Boolean) {
     if (isVisible) this.visibility = View.VISIBLE
     else this.visibility = View.GONE
+}
+
+fun <T> Single<T>.doCompletableIf(
+    predicate: Boolean,
+    completableCreator: (data: T) -> Completable
+): Single<T> {
+    return if (predicate) {
+        this.flatMap {
+            completableCreator(it).andThen(Single.just(it))
+        }
+    } else {
+        this
+    }
 }

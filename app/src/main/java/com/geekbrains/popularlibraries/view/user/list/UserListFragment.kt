@@ -31,7 +31,11 @@ class UserListFragment :
 
     private val presenter: UserListPresenter by moxyPresenter {
         UserListPresenter(
-            GithubRepositoryImpl(NetworkProvider.usersApi),
+            GithubRepositoryImpl(
+                NetworkProvider.usersApi,
+                GeekBrainsApp.instance.database.userDao(),
+                GeekBrainsApp.instance.getConnectSingle()
+            ),
             GeekBrainsApp.instance.router
         )
     }
