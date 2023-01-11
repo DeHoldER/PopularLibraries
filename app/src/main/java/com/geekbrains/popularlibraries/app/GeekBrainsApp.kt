@@ -33,4 +33,5 @@ class GeekBrainsApp : Application() {
     fun getConnectObservable() = androidNetworkStatus.isOnline()
     fun getConnectSingle() = androidNetworkStatus.isOnlineSingle()
 
+
 }
