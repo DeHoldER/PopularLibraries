@@ -7,32 +7,43 @@ import com.geekbrains.popularlibraries.R
 import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import com.geekbrains.popularlibraries.core.OnBackPressedListener
 import com.geekbrains.popularlibraries.databinding.ActivityMainBinding
+import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import javax.inject.Inject
 
 const val WRITE_PERMISSION_REQUEST_CODE = 124
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
+    @Inject
+    lateinit var navigatorHolder: NavigatorHolder
+
     private val navigator = AppNavigator(this, R.id.containerMain)
     private lateinit var binding: ActivityMainBinding
 
-    private val presenter by moxyPresenter { MainPresenter(GeekBrainsApp.instance.router) }
+    private val presenter by moxyPresenter {
+        MainPresenter().apply {
+            GeekBrainsApp.instance.appComponent.inject(this)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        GeekBrainsApp.instance.appComponent.inject(this)
     }
 
     override fun onResumeFragments() {
         super.onResumeFragments()
-        GeekBrainsApp.instance.navigationHolder.setNavigator(navigator)
+        navigatorHolder.setNavigator(navigator)
     }
 
     override fun onPause() {
-        GeekBrainsApp.instance.navigationHolder.removeNavigator()
+        navigatorHolder.removeNavigator()
         super.onPause()
     }
 

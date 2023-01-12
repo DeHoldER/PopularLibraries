@@ -1,7 +1,8 @@
 package com.geekbrains.popularlibraries.view.user.details
 
+import com.geekbrains.popularlibraries.app.GeekBrainsApp
 import com.geekbrains.popularlibraries.core.nav.AppScreens
-import com.geekbrains.popularlibraries.model.GithubFork
+import com.geekbrains.popularlibraries.core.nav.AppScreensImpl
 import com.geekbrains.popularlibraries.model.GithubRepo
 import com.geekbrains.popularlibraries.repository.GithubRepository
 import com.geekbrains.popularlibraries.utils.disposeBy
@@ -9,11 +10,15 @@ import com.geekbrains.popularlibraries.utils.subscribeByDefault
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class UserDetailsPresenter(
-    private val repository: GithubRepository,
-    private val router: Router
-) : MvpPresenter<UserDetailsView>() {
+class UserDetailsPresenter(private val repository: GithubRepository,) : MvpPresenter<UserDetailsView>() {
+
+    @Inject
+    lateinit var router: Router
+
+    @Inject
+    lateinit var appScreens: AppScreens
 
     private val bag = CompositeDisposable()
 
@@ -50,8 +55,6 @@ class UserDetailsPresenter(
     }
 
     fun onRepoClicked(repo: GithubRepo) {
-        router.navigateTo(
-            AppScreens.repoDetailsScreen(repo.ownerLogin, repo.name)
-        )
+        router.navigateTo(appScreens.repoDetailsScreen(repo.ownerLogin, repo.name))
     }
 }

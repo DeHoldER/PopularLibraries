@@ -42,9 +42,10 @@ class RepoDetailsFragment :
                 NetworkProvider.usersApi,
                 GeekBrainsApp.instance.database.userDao(),
                 GeekBrainsApp.instance.getConnectSingle()
-            ),
-            GeekBrainsApp.instance.router
-        )
+            )
+        ).apply {
+            GeekBrainsApp.instance.appComponent.inject(this)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

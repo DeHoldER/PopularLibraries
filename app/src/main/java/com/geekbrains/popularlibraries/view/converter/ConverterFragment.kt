@@ -34,7 +34,10 @@ class ConverterFragment :
     }
 
     private val presenter: ConverterPresenter by moxyPresenter {
-        ConverterPresenter(GeekBrainsApp.instance.router)
+        ConverterPresenter(
+            TODO()
+//            GeekBrainsApp.instance.router
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

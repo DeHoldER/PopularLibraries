@@ -34,14 +34,14 @@ class UserDetailsFragment :
     })
 
     private val presenter: UserDetailsPresenter by moxyPresenter {
-        UserDetailsPresenter(
-            GithubRepositoryImpl(
-                NetworkProvider.usersApi,
-                GeekBrainsApp.instance.database.userDao(),
-                GeekBrainsApp.instance.getConnectSingle()
-            ),
-            GeekBrainsApp.instance.router
+        UserDetailsPresenter(            GithubRepositoryImpl(
+            NetworkProvider.usersApi,
+            GeekBrainsApp.instance.database.userDao(),
+            GeekBrainsApp.instance.getConnectSingle()
         )
+        ).apply {
+            GeekBrainsApp.instance.appComponent.inject(this)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

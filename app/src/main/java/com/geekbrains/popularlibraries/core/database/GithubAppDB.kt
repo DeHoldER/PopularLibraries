@@ -5,6 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+const val DB_NAME = "github.db"
+
 @Database(
     entities = [UserDBObject::class],
     version = 1
@@ -18,7 +20,7 @@ abstract class GithubAppDB : RoomDatabase() {
             return Room.databaseBuilder(
                 context,
                 GithubAppDB::class.java,
-                "github.db"
+                DB_NAME
             ).build()
         }
     }

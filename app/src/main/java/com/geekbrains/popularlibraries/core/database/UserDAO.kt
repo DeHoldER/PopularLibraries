@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.core.Single
 @Dao
 interface UserDAO {
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(userDBObject: UserDBObject): Completable
 

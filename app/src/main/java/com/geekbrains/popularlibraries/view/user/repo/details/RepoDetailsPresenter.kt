@@ -7,11 +7,12 @@ import com.geekbrains.popularlibraries.utils.subscribeByDefault
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class RepoDetailsPresenter(
-    private val repository: GithubRepository,
-    private val router: Router
-) : MvpPresenter<RepoDetailsView>() {
+class RepoDetailsPresenter(private val repository: GithubRepository) : MvpPresenter<RepoDetailsView>() {
+
+    @Inject
+    lateinit var router: Router
 
     private val bag = CompositeDisposable()
 
@@ -49,6 +50,6 @@ class RepoDetailsPresenter(
     }
 
     fun onForkClicked(fork: GithubFork) {
-
+//        TODO
     }
 }
